@@ -1,12 +1,12 @@
-Summary:	The kolab2 administrator
+Summary:	A native client application to configure the Kolab groupware server
 Name:		kolabadmin
 Version:	0
-Release:	%mkrel 0.r23.2
+Release:	%mkrel 0.r74.1
 License:	GPL
 Group:		Graphical desktop/KDE
-URL:		svn://wgess16.dyndns.org/kolabadmin/trunk
+URL:		http://wgess16.dyndns.org/~tobias/qt/kolabadmin/
+# svn://wgess16.dyndns.org/kolabadmin/trunk
 Source0:	%{name}.tar.bz2
-Patch0:		kolabadmin-build_fix.diff
 BuildRequires:	kdelibs-devel
 BuildRequires:	qt4-devel
 BuildRequires:	openldap-devel
@@ -14,22 +14,18 @@ BuildRequires:	ImageMagick
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-The kolab2 administrator
+KolabAdmin is a native client application to configure the Kolab groupware
+server. It is written in C++/Qt4, which makes it portable to all platforms
+(*nix, MacOSX, Windows) and allows a clean and easy installation.
 
 %prep
 
 %setup -q -n %{name}
-%patch0 -p0
 
 %build
-export CFLAGS="%{optflags} -DLDAP_DEPRECATED"
-export CXXFLAGS="%{optflags} -DLDAP_DEPRECATED"
-
 /usr/lib/qt4/bin/qmake
 
-%make \
-    CFLAGS="$CFLAGS %{optflags} -DLDAP_DEPRECATED" \
-    CXXFLAGS="$CXXFLAGS %{optflags} -DLDAP_DEPRECATED"
+%make
 
 %install
 rm -rf %{buildroot}
@@ -49,22 +45,37 @@ convert pics/kolab_logo.png -resize 48x48 %{buildroot}%{_liconsdir}/%{name}.png
 # install menu entry.
 install -d %{buildroot}%{_menudir}
 cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(%{name}): needs=X11 \
-section="More Applications/Servers" \
-title="%{name}" \
-longtitle="%{summary}." \
+?package(%{name}): \
+needs=X11 \
+section="Configuration/Networking" \
+title="Kolabadmin" \
+longtitle="The kolab2 administrator" \
 command="%{_bindir}/%{name}" \
 icon="%{name}.png"
+xdg="true"
 EOF
 
-%clean
-rm -rf %{buildroot}
+# XDG menu
+install -d %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+[Desktop Entry]
+Name=Kolabadmin
+Comment=The kolab2 administrator
+Exec=%{_bindir}/%{name}
+Icon=%{name}
+Terminal=false
+Type=Application
+Categories=X-MandrivaLinux-System-Configuration-Networking
+EOF
 
 %post
 %update_menus
  
 %postun
 %clean_menus
+
+%clean
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
@@ -73,4 +84,4 @@ rm -rf %{buildroot}
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-
+%{_datadir}/applications/*.desktop
