@@ -47,11 +47,11 @@ install -d %{buildroot}%{_menudir}
 cat > %{buildroot}%{_menudir}/%{name} << EOF
 ?package(%{name}): \
 needs=X11 \
-section="Configuration/Networking" \
+section="System/Configuration/Networking" \
 title="Kolabadmin" \
 longtitle="The kolab2 administrator" \
 command="%{_bindir}/%{name}" \
-icon="%{name}.png"
+icon="%{name}.png" \
 xdg="true"
 EOF
 
@@ -65,7 +65,7 @@ Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-System-Configuration-Networking
+Categories=X-MandrivaLinux-System-Configuration-Networking;
 EOF
 
 %post
