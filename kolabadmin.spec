@@ -11,7 +11,6 @@ BuildRequires:	kdelibs-devel
 BuildRequires:	qt4-devel
 BuildRequires:	openldap-devel
 BuildRequires:	ImageMagick
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 KolabAdmin is a native client application to configure the Kolab groupware
