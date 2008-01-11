@@ -43,17 +43,6 @@ convert pics/kolab_logo.png -resize 32x32 %{buildroot}%{_iconsdir}/%{name}.png
 convert pics/kolab_logo.png -resize 48x48 %{buildroot}%{_liconsdir}/%{name}.png
 
 # install menu entry.
-install -d %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(%{name}): \
-needs=X11 \
-section="System/Configuration/Networking" \
-title="Kolabadmin" \
-longtitle="The kolab2 administrator" \
-command="%{_bindir}/%{name}" \
-icon="%{name}.png" \
-xdg="true"
-EOF
 
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
@@ -80,7 +69,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %attr(0755,root,root) %{_bindir}/%{name}
-%{_menudir}/%{name}
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
