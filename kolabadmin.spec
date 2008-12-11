@@ -10,7 +10,7 @@ Source0:	%{name}.tar.bz2
 BuildRequires:	kdelibs-devel
 BuildRequires:	qt4-devel
 BuildRequires:	openldap-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
