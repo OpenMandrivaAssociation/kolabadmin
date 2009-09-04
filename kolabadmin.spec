@@ -1,7 +1,7 @@
 Summary:	A native client application to configure the Kolab groupware server
 Name:		kolabadmin
 Version:	0
-Release:	%mkrel 0.r74.2
+Release:	%mkrel 0.r74.3
 License:	GPL
 Group:		Graphical desktop/KDE
 URL:		http://wgess16.dyndns.org/~tobias/qt/kolabadmin/
