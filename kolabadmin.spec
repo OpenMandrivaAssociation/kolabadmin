@@ -4,7 +4,7 @@ Version:	0
 Release:	%mkrel 0.r74.3
 License:	GPL
 Group:		Graphical desktop/KDE
-URL:		http://wgess16.dyndns.org/~tobias/qt/kolabadmin/
+URL:		https://wgess16.dyndns.org/~tobias/qt/kolabadmin/
 # svn://wgess16.dyndns.org/kolabadmin/trunk
 Source0:	%{name}.tar.bz2
 BuildRequires:	kdelibs-devel
